@@ -52,7 +52,7 @@ function getAllData(studentObj) {
         }\nPhone: ${phone}\nEmail: ${email}\nFaculty: ${faculty}\nDepartament: ${departament}`
     );
 }
-//etAllData(student);
+//getAllData(student);
 
 /* 3.
 3.1 Создать числовой массив и проинициализировать его 25 элементами с помощью случайных чисел.
@@ -90,18 +90,19 @@ function printEvenElement(array) {
 //printEvenElement(numberArray);
 
 function getZeroElements(array) {
-    let numberOfZero = 0;
+    let indexsOfZero = [];
     for (let i = 0; i < array.length; i++) {
         if (Number(array[i]) === 0) {
-            console.log(i);
-            numberOfZero++;
+            indexsOfZero.push(i);
         }
     }
-    return numberOfZero;
+    return indexsOfZero;
 }
 
-//console.log(`Number of zero elements ${numberOfZero}`);
+const zeroElements = getZeroElements(numberArray);
 
+// console.log(`${zeroElements}`);
+// console.log(`${zeroElements.length}`);
 /*Создать классы:
 - Книга (автор, название, год издания, издательство)
 - Электронная версия книги (автор, название, год издания, издательство, формат файла, электронный номер) */
