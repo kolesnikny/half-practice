@@ -1,0 +1,24 @@
+.slider-container {
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.image-container {
+    width: 300px;
+}
+
+.slide {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.btn {
+    background-color: transparent;
+    border: none;
+    font-size: 3em;
+    padding: 10px;
+    cursor: pointer;
+    opacity: 0.5;
+}
