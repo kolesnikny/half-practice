@@ -1,26 +1,25 @@
 'use strict';
 
 /*1. Вычислить сумму первых N элементов последовательности, параметр N задает пользователь.
-
 (1+2+3.....+N)*/
-function getSum(array, numberElements) {
-    if (numberElements <= 0 || numberElements > array.length) {
-        throw new RangeError('bed number');
-    }
+
+function getSum(numberElements) {
     let sum = 0;
-    for (let i = 0; i < numberElements; i++) {
-        sum += array[i];
+    if (numberElements === 0) {
+        return sum;
     }
-    return sum;
+    sum += numberElements;
+    return sum + getSum(--numberElements);
 }
 
-//console.log(getSum([1, 2, 3, 4, 5, 6, 7], 6));
+console.log(getSum(5));
 
 /*2.
 2.1 Создать объект Student, который содержит следующие свойства: имя, фамилию, пол, контактные данные.
 2.2 Создать объект, содержащий информацию о факультете и кафедре.
 2.3. Связать объекты между собой, т.е. прописать данные о факультете и кафедре для студента.
 2.4 Реализовать функцию вывода на экран полной информации о студенте.*/
+
 const student = {
     name: 'Student',
     surname: 'Studentovich',
