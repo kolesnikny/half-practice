@@ -18,38 +18,46 @@ function getSum(numberElements) {
 2.3. Связать объекты между собой, т.е. прописать данные о факультете и кафедре для студента.
 2.4 Реализовать функцию вывода на экран полной информации о студенте.*/
 
-const student = {
-    name: 'Student',
-    surname: 'Studentovich',
-    isMale: true,
-    contacts: {
-        phone: '+380966633222',
-        email: 'this@mail.ku',
-    },
-};
-
-const faculty = {
-    faculty: 'premudrostey',
-    departament: 'mega depart',
-};
-
-student.education = faculty;
-
-function getAllData(studentObj) {
-    const {
-        name,
-        surname,
-        isMale,
-        contacts: { phone, email },
-        education: { faculty, departament },
-    } = student;
-    console.log(
-        `Name: ${name}\nSurname: ${surname}\nGender: ${
-            isMale ? 'male' : 'female'
-        }\nPhone: ${phone}\nEmail: ${email}\nFaculty: ${faculty}\nDepartament: ${departament}`
-    );
+class Student {
+    constructor(name, surname, isMale, phone, email, education) {
+        this.name = name;
+        this.student = surname;
+        this.isMale = isMale;
+        this.contacts = {};
+        this.contacts.phone = phone;
+        this.contacts.email = email;
+        this.education;
+    }
 }
-//getAllData(student);
+
+class Education {
+    constructor(faculty, departament) {
+        this.faculty = faculty;
+        this.departament = departament;
+    }
+}
+
+function printAllData(studentObj) {
+    for (const item of Object.keys(studentObj)) {
+        if (typeof studentObj[item] === 'object') {
+            printAllData(studentObj[item]);
+        } else {
+            console.log(`${item}: ${studentObj[item]}`);
+        }
+    }
+}
+
+const student1 = new Student(
+    'Student',
+    'Studentovich',
+    true,
+    '+380966633222',
+    'this@mail.ku'
+);
+
+student1.education = new Education('faculty1', 'departament1');
+
+//printAllData(student1);
 
 /* 3.
 3.1 Создать числовой массив и проинициализировать его 25 элементами с помощью случайных чисел.
@@ -64,27 +72,43 @@ const numberArray = [];
 for (let i = 0; i < ARRAY_SIZE; i++) {
     numberArray.push((Math.random() * 10).toFixed());
 }
+
 console.log(numberArray);
 
-function printEvenIndexElement(array) {
-    for (let i = 0; i < array.length; i++) {
-        if (i % 2 === 0) {
-            console.log(array[i]);
+/**
+ * @description 3.2 Вывести элементы с четными индексами.
+ * @param {*} array
+ * @returns array
+ */
+function getEvenIndexElement(array) {
+    return array.filter((value, index) => {
+        if (index % 2 === 0) {
+            return value;
         }
-    }
+    });
 }
 
-//printEvenIndexElement(numberArray);
+//console.log(getEvenIndexElement(numberArray));
 
-function printEvenElement(array) {
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] % 2 === 0) {
-            console.log(array[i]);
+/**
+ * @description 3.3 Вывести только четные элементы
+ * @param {*} array
+ * @returns
+ */
+function getEvenElement(array) {
+    return array.filter((value) => {
+        if (value % 2 === 0) {
+            return value;
         }
-    }
+    });
 }
+//console.log(getEvenElement(numberArray));
 
-//printEvenElement(numberArray);
+/**
+ * @description 3.4 Вывести индексы нулевых элементов (элемент = 0)
+ * @param {*} array
+ * @returns
+ */
 
 function getZeroElements(array) {
     let indexsOfZero = [];
@@ -96,10 +120,12 @@ function getZeroElements(array) {
     return indexsOfZero;
 }
 
-const zeroElements = getZeroElements(numberArray);
+console.log(getZeroElements(numberArray));
 
-// console.log(`${zeroElements}`);
-// console.log(`${zeroElements.length}`);
+//3.5 Посчитать количество нулевых элементов
+const zeroElements = getZeroElements(numberArray).length;
+console.log(zeroElements);
+
 /*Создать классы:
 - Книга (автор, название, год издания, издательство)
 - Электронная версия книги (автор, название, год издания, издательство, формат файла, электронный номер) */
