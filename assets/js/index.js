@@ -12,8 +12,6 @@ function getSum(numberElements) {
     return sum + getSum(--numberElements);
 }
 
-console.log(getSum(5));
-
 /*2.
 2.1 Создать объект Student, который содержит следующие свойства: имя, фамилию, пол, контактные данные.
 2.2 Создать объект, содержащий информацию о факультете и кафедре.
